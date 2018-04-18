@@ -1,0 +1,76 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Movietron</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <form class="navbar-form navbar-left" role="search">       
+          <div class="form-group">     
+              <input type="text" class="form-control" placeholder="Search" required #searchName>
+          </div>
+              <button class="btn btn-default" (click)="onClick(searchName.value)" ><span class="glyphicon glyphicon-search"></span></button>
+        </form>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" (click)="popularMovies()">Popular </a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="highRatedMovies()">Top Rated 2017</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="upcomingMovies()">Upcoming</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    
+    
+    <form class="navbar-form navbar-right" role="search">       
+      <div class="form-group">     
+          <input type="text" class="form-control" placeholder="Search" required #searchName>
+      </div>
+          <button class="btn btn-default" (click)="onClick(searchName.value)" ><span class="glyphicon glyphicon-search"></span></button>
+    </form>
+ 
+   
+   <ul>
+     <li *ngFor="let movie of movies; let first = first"  class="movielist">
+       <div *ngIf="movie.poster_path">
+        
+         <div class="row">
+           <div class="col-md-1"></div>
+           <div class="col-md-2 poster">
+                <img class="img-responsive img-rounded" src={{movie.poster_path}} >
+           </div>
+           <div class="col-md-6 well">
+             <div class="row">
+                <div class="col-md-10"><h4>{{movie.title}}</h4></div>
+                <div class="col-md-2">{{movie.vote_average}} <span class="glyphicon glyphicon-star" aria-hidden="true"></span></div>
+             </div>
+             <div class="row">
+               <div class="col-md-6"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{movie.release_date}}</div>
+              <div class="col-md-6">{{movie.genres}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 overview">
+                {{movie.overview}}<br><br>
+                Play Trailer <button class="btn btn-default" (click)="playMovie(movie)" ><span class="glyphicon glyphicon-play"></span></button>        
+              </div>
+            </div>
+           </div>
+            <div class="col-md-5"></div>
+         </div>
+       </div>
+          </li> 
+    </ul>
+
+
+
+
